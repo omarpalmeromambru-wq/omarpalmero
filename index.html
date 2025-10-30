@@ -1,0 +1,180 @@
+<!<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AutoZone - Compra tu carro favorito</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Diler car</h1>
+    <p></p>
+
+    <!-- Botón del carrito -->
+    <button id="ver-carrito" class="btn-3">🛒 Ver Carrito (<span id="contador">0</span>)</button>
+
+    <header class="header">
+      <div class="menu container">
+        <a href="#" class="logo">Diler car</a>
+        <input type="checkbox" id="menu" />
+        <label for="menu" aria-label="Abrir menú de navegación">
+          <img src="imagen/imagen.webp" class="menu-icono" alt="Menú" />
+        </label>
+        <nav class="navbar">
+          <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Productos</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="header-content container">
+        <div class="header-txt">
+          <h1>Compra tu <span>carro</span><br />favorito aquí</h1>
+          <p>
+            Encuentra los mejores modelos, precios competitivos y asesoría
+            personalizada para que tu experiencia de compra sea perfecta.
+          </p>
+          <div class="buttons">
+            <a href="#" class="btn-1">Información</a>
+            <a href="#" class="btn-1">Catálogo</a>
+          </div>
+          <div class="galeria">
+            <img src="imagen/imagen1.jpg" alt="Carro 1" />
+            <img src="imagen/images2.jpg" alt="Carro 2" />
+            <img src="imagen/images3.jpg" alt="Carro 3" />
+            <img src="imagen/images4.jpg" alt="Carro 4" />
+            <img src="imagen/images5.avif" alt="Carro 5" />
+            <img src="imagen/images6.jpg" alt="Carro 6" />
+            <img src="imagen/images7.jpg" alt="Carro 7" />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Carrito de Compras -->
+    <div id="carrito" class="carrito oculto">
+      <h2>Tu Carrito</h2>
+      <div id="items-carrito"></div>
+      <p id="total">Total: $0</p>
+      <button id="vaciar" class="btn-3">Vaciar Carrito</button>
+    </div>
+
+    <!-- Sección de carros populares -->
+    <section class="popular container">
+      <h2>Carros Populares</h2>
+      <div class="popular-content">
+        <!-- Agrega contenido destacado aquí -->
+      </div>
+    </section>
+
+    <!-- Catálogo de productos -->
+    <main class="product container">
+      <h2>Todos los modelos</h2>
+      <div class="producto-content">
+        <article class="producto-1">
+          <img src="imagen/yotota zupra mk5.jpg"Toyota Supra MK5" />
+          <div class="producto-txt">
+            <h3>Toyota Supra MK5</h3>
+            <div class="price">
+              <p>$65,000</p>
+              <a href="#" class="btn-2" data-name="Toyota Supra MK5" data-price="65000">Comprar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="producto-1">
+          <img src="imagen/bmw-m4-competition-x-alcantara-2023_9912x6526_xtrafondos.com.jpg" alt="BMW M4" />
+          <div class="producto-txt">
+            <h3>BMW M4</h3>
+            <div class="price">
+              <p>$72,000</p>
+              <a href="#" class="btn-2" data-name="BMW M4" data-price="72000">Comprar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="producto-1">
+          <img src="imagen/mathew-antony-owDSvXtK1bg-unsplash.jpg" alt="Audi RS5" />
+          <div class="producto-txt">
+            <h3>Audi RS5</h3>
+            <div class="price">
+              <p>$68,000</p>
+              <a href="#" class="btn-2" data-name="Audi RS5" data-price="68000">Comprar</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <!-- Sección de contacto -->
+    <section class="contact container">
+      <div class="contact-content">
+        <h3>Suscríbete a nuestro boletín</h3>
+        <form>
+          <input type="email" placeholder="Escribe tu correo" required />
+          <input type="submit" class="btn-3" value="Enviar" />
+        </form>
+      </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="footer container">
+      <div class="link">
+        <a href="#" class="logo"></a>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Servicios</a></li>
+          <li><a href="#">Productos</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- CHAT EN TIEMPO REAL -->
+    <div id="chat-container" class="chat-container">
+      <h3>💬 Chat de Usuarios</h3>
+      <div id="mensajes" class="mensajes"></div>
+      <div class="chat-input">
+        <input type="text" id="mensaje" placeholder="Escribe tu mensaje..." />
+        <button id="enviar">Enviar</button>
+      </div>
+    </div>
+
+    <!-- Socket.IO -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const mensajesDiv = document.getElementById('mensajes');
+      const input = document.getElementById('mensaje');
+      const enviarBtn = document.getElementById('enviar');
+
+      const nombre = 'Usuario_' + Math.floor(Math.random() * 1000);
+
+      enviarBtn.addEventListener('click', enviarMensaje);
+      input.addEventListener('keypress', e => {
+        if (e.key === 'Enter') enviarMensaje();
+      });
+
+      function enviarMensaje() {
+        const texto = input.value.trim();
+        if (texto) {
+          socket.emit('chatMessage', { nombre, texto });
+          input.value = '';
+        }
+      }
+
+      socket.on('chatMessage', (msg) => {
+        const p = document.createElement('div');
+        p.classList.add('mensaje');
+        if (msg.nombre === nombre) p.classList.add('mensaje-propio');
+        p.textContent = `${msg.nombre}: ${msg.texto}`;
+        mensajesDiv.appendChild(p);
+        mensajesDiv.scrollTop = mensajesDiv.scrollHeight;
+      });
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
