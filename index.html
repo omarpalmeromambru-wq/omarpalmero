@@ -2,15 +2,20 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>AutoZone - Compra tu carro favoritos</title>
+    <title>AutoZone - Compra tu carro favorito</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Diler carr</h1>
+    <h1>Diler car</h1>
     <p></p>
 
-    <!-- Botón del carrito -->
-    <button id="ver-carrito" class="btn-3">🛒 Ver Carrito (<span id="contador">0</span>)</button>
+    <div class="buttons">
+  <a href="informacion.html" class="btn-principal grande">📘 Información</a>
+  <a href="catalogo.html" class="btn-principal grande">🚗 Catálogo</a>
+</div>
+
+<!-- Botón del carrito -->
+<button id="ver-carrito" class="btn-principal grande">🛒 Ver Carrito (<span id="contador">0</span>)</button>
 
     <header class="header">
       <div class="menu container">
@@ -96,6 +101,27 @@
         </article>
 
         <article class="producto-1">
+          <img src="imagen/ford-mustang-mach-e-1400-prototipo-2020_5923x3954_xtrafondos.com.jpg" alt="BMW M4" />
+          <div class="producto-txt">
+            <h3>Ford Mustang Mach e-1400 Prototipo 2020</h3>
+            <div class="price">
+              <p>$90,000</p>
+              <a href="#" class="btn-2" data-name="BMW M4" data-price="72000">Comprar</a>
+            </div>
+          </div>
+        </article>
+        <article class="producto-1">
+          <img src="imagen/vorsteiner-lamborghini-huracan-verona-edizione_1920x1200_xtrafondos.com.jpg" alt="BMW M4" />
+          <div class="producto-txt">
+            <h3>Vorsteiner Lamborghini Huracan Verona Edizione</h3>
+            <div class="price">
+              <p>$100,000</p>
+              <a href="#" class="btn-2" data-name="BMW M4" data-price="72000">Comprar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="producto-1">
           <img src="imagen/mathew-antony-owDSvXtK1bg-unsplash.jpg" alt="Audi RS5" />
           <div class="producto-txt">
             <h3>Audi RS5</h3>
@@ -107,36 +133,6 @@
         </article>
       </div>
     </main>
-    <article class="producto-1">
-          <img src="imagen/vorsteiner-lamborghini-huracan-verona-edizione_1920x1200_xtrafondos.com.jpg" alt="BMW M4" />
-          <div class="producto-txt">
-            <h3>Vorsteiner Lamborghini Huracan Verona Edizione</h3>
-            <div class="price">
-              <p>$100,000</p>
-              <a href="#" class="btn-2" data-name="BMW M4" data-price="72000">Comprar</a>
-            </div>
-          </div>
-        </article>
-       <article class="producto-1">
-          <img src="imagen/ford-mustang-mach-e-1400-prototipo-2020_5923x3954_xtrafondos.com.jpg" alt="BMW M4" />
-          <div class="producto-txt">
-            <h3>Ford Mustang Mach e-1400 Prototipo 2020</h3>
-            <div class="price">
-              <p>$90,000</p>
-              <a href="#" class="btn-2" data-name="BMW M4" data-price="72000">Comprar</a>
-            </div>
-          </div>
-        </article>
-     <article class="producto-1">
-   <img src="imagen/vorsteiner-lamborghini-huracan-verona-edizione_1920x1200_xtrafondos.com.jpg" alt="BMW M4" />
-          <div class="producto-txt">
-            <h3>Vorsteiner Lamborghini Huracan Verona Edizione</h3>
-            <div class="price">
-              <p>$100,000</p>
-              <a href="#" class="btn-2" data-name="BMW M4" data-price="72000">Comprar</a>
-            </div>
-          </div>
-        </article>
 
     <!-- Sección de contacto -->
     <section class="contact container">
@@ -208,10 +204,7 @@
     <script src="script.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
+<div class="buttons">
+  <a href="informacion.html" class="btn-1">Información</a>
+  <a href="catalogo.html" class="btn-1">Catálogo</a>
+</div>
